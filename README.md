@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Solutions | Elite Lead OS</title>
+    <title>Prime Solutions | Official Agent Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +12,6 @@
             --danger: #f43f5e;
             --bg: #020617;
             --card: #0f172a;
-            --border: rgba(255,255,255,0.1);
         }
 
         body {
@@ -23,117 +22,109 @@
             padding: 20px;
         }
 
-        .master-wrapper {
+        .master-container {
             max-width: 1400px;
             margin: 0 auto;
             background: var(--card);
             border-radius: 40px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,255,255,0.1);
             overflow: hidden;
             box-shadow: 0 50px 100px -20px rgba(0,0,0,0.9);
         }
 
-        /* Agency Branding Header */
+        /* Agency Header */
         header {
             background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
-            padding: 40px;
+            padding: 45px;
             text-align: center;
             border-bottom: 5px solid var(--warning);
         }
 
-        header h1 { margin: 0; font-size: 42px; font-weight: 800; letter-spacing: 4px; }
-        .links { margin-top: 15px; }
-        .links a { 
-            color: var(--warning); text-decoration: none; font-size: 13px; font-weight: 600; 
-            padding: 8px 20px; border: 1px solid var(--warning); border-radius: 50px; margin: 0 5px;
-            transition: 0.3s;
-        }
-        .links a:hover { background: var(--warning); color: #000; }
+        header h1 { margin: 0; font-size: 40px; font-weight: 800; letter-spacing: 4px; }
+        .branding-sub { color: var(--warning); font-size: 14px; font-weight: 600; margin-top: 10px; display: block; }
 
-        /* Dynamic Input Bar */
-        .var-bar {
+        /* Real-time Inputs */
+        .input-hub {
             background: rgba(99, 102, 241, 0.1);
-            padding: 20px 40px;
+            padding: 25px 40px;
             display: flex;
-            gap: 15px;
-            border-bottom: 1px solid var(--border);
+            gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .var-bar input {
+        .input-hub input {
             background: #020617;
             border: 1px solid #334155;
-            padding: 12px;
+            padding: 14px;
             color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             flex: 1;
+            font-size: 14px;
             outline: none;
+            transition: 0.3s;
         }
 
-        .var-bar input:focus { border-color: var(--primary); }
+        .input-hub input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
 
-        .main-grid {
+        .content-grid {
             display: grid;
             grid-template-columns: 1.8fr 1fr;
             gap: 2px;
-            background: var(--border);
+            background: rgba(255,255,255,0.1);
         }
 
-        .panel { background: var(--card); padding: 40px; }
+        .panel { background: var(--card); padding: 45px; }
 
-        /* Step Styling */
-        .step-block {
-            margin-bottom: 45px;
-            border-left: 5px solid var(--primary);
+        /* Script Content */
+        .step-box {
+            margin-bottom: 50px;
+            border-left: 6px solid var(--primary);
             padding-left: 25px;
             position: relative;
         }
 
-        .step-badge {
+        .phase-tag {
             background: var(--primary);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 15px;
             border-radius: 8px;
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: inline-block;
         }
 
-        .dialogue { font-size: 21px; line-height: 1.8; color: #e2e8f0; }
-        .hl { color: var(--warning); font-weight: 800; }
+        .dialogue { font-size: 22px; line-height: 1.8; color: #e2e8f0; }
+        .hl { color: var(--warning); font-weight: 800; text-decoration: underline; }
 
-        /* Action Buttons */
         .copy-btn {
-            margin-top: 15px;
-            background: var(--glass);
+            margin-top: 20px;
+            background: rgba(255,255,255,0.05);
             border: 1px solid var(--primary);
             color: var(--primary);
-            padding: 8px 15px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 12px;
             font-weight: 700;
+            transition: 0.3s;
         }
 
         .copy-btn:hover { background: var(--primary); color: white; }
 
-        /* Sidebar Rebuttals (Clickable) */
-        .rebuttal-card {
+        /* Sidebar Tools */
+        .rebuttal-pill {
             background: #020617;
-            border: 1px solid #1e293b;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 18px;
             margin-bottom: 15px;
-            cursor: pointer;
-            transition: 0.3s;
+            border-left: 4px solid var(--danger);
         }
 
-        .rebuttal-card:hover { border-color: var(--danger); }
-        .rebuttal-card strong { color: var(--danger); font-size: 13px; display: block; margin-bottom: 5px; }
-        .rebuttal-card p { font-size: 14px; color: #94a3b8; margin: 0; line-height: 1.5; }
+        .rebuttal-pill strong { color: var(--danger); display: block; margin-bottom: 8px; font-size: 13px; }
+        .rebuttal-pill p { font-size: 15px; color: #94a3b8; margin: 0; line-height: 1.6; }
 
-        .submit-btn {
+        .lock-btn {
             background: var(--success);
             color: white;
             width: 100%;
@@ -141,133 +132,106 @@
             border: none;
             border-radius: 20px;
             font-weight: 900;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
             margin-top: 20px;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: #020617;
-            font-size: 13px;
-            color: #475569;
-        }
+        footer { text-align: center; padding: 40px; background: #020617; color: #475569; font-size: 13px; }
     </style>
 </head>
 <body>
 
-<div class="master-wrapper">
+<div class="master-container">
     <header>
         <h1>PRIME SOLUTIONS</h1>
-        <div class="links">
-            <a href="https://web-hub-code.github.io/PRIMESOLUTIONS/" target="_blank">Agency Portfolio</a>
-            <a href="https://web-hub-code.github.io/script/" target="_blank">User Script Hub</a>
-        </div>
+        <span class="branding-sub">OFFICIAL AGENT COMMAND CENTER & LEAD OS</span>
     </header>
 
-    <div class="var-bar">
-        <input type="text" id="custName" placeholder="Customer Name..." onkeyup="updateVars()">
-        <input type="text" id="cityName" placeholder="City Name..." onkeyup="updateVars()">
-        <input type="text" id="agentName" placeholder="Your Name..." onkeyup="updateVars()">
+    <div class="input-hub">
+        <input type="text" id="agentInput" placeholder="Agent Name..." onkeyup="sync()">
+        <input type="text" id="custInput" placeholder="Customer Name..." onkeyup="sync()">
+        <input type="text" id="cityInput" placeholder="City Name..." onkeyup="sync()">
     </div>
 
-    <div class="main-grid">
+    <div class="content-grid">
         <div class="panel">
             
-            <div class="step-block">
-                <span class="step-badge">Step 1-3: Intro & Verification</span>
-                <div class="dialogue" id="s1">
+            <div class="step-box">
+                <span class="phase-tag">Phase 1: Verification</span>
+                <div class="dialogue" id="d1">
                     "Hi, this is <span class="hl agent">Agent</span> from <strong>Prime Solutions</strong>. How are you today? <br><br>
-                    We’re verifying homeowners in <span class="hl city">Your City</span> for the <span class="hl">2026 Home Energy Credits</span>. Are you the <strong>homeowner</strong>? <br><br>
-                    Great! How many windows are we looking at—<strong>5 to 10</strong> or more?"
+                    We’re verifying homeowners in <span class="hl city">City</span> for the <span class="hl">2026 Home Efficiency Credits</span>. Are you the <strong>homeowner</strong>? <br><br>
+                    Great! Are we looking at <strong>5 to 10 windows</strong> or more? And do you prefer <strong>Sliding or Casement</strong>?"
                 </div>
-                <button class="copy-btn" onclick="copyText('s1')">CLICK TO COPY DIALOGUE</button>
+                <button class="copy-btn" onclick="copyIt('d1')">COPY DIALOGUE</button>
             </div>
 
-            <div class="step-block" style="border-left-color: var(--warning);">
-                <span class="step-badge">Step 4-6: Rebate Data</span>
-                <div class="dialogue" id="s2">
-                    "To check the exact rebate for your street, what is your <strong>ZIP code</strong>? <br><br>
-                    And for the record, what is your <strong>Date of Birth</strong>? This is strictly to apply <span class="hl">Senior or Military discounts</span> to your estimate."
+            <div class="step-box" style="border-left-color: var(--warning);">
+                <span class="phase-tag">Phase 2: Qualification</span>
+                <div class="dialogue" id="d2">
+                    "To check the specific rebate for your county, what is your <strong>ZIP code</strong>? <br><br>
+                    And for the state record, what is your <strong>Date of Birth</strong>? This helps us apply the <span class="hl">Senior or Veteran discounts</span> properly."
                 </div>
-                <button class="copy-btn" onclick="copyText('s2')">CLICK TO COPY DIALOGUE</button>
+                <button class="copy-btn" onclick="copyIt('d2')">COPY DIALOGUE</button>
             </div>
 
-            <div class="step-block" style="border-left-color: var(--success);">
-                <span class="step-badge">Step 7-10: Credit & Financing</span>
-                <div class="dialogue" id="s3">
-                    "For our <span class="hl">0% interest plans</span>, what range is your credit score in? Most people check their banking app—I'll wait. <br><br>
-                    Lastly, any <strong>mortgage modifications</strong> in the last 2 years?"
+            <div class="step-box" style="border-left-color: var(--success);">
+                <span class="phase-tag">Phase 3: Financials & Closing</span>
+                <div class="dialogue" id="d3">
+                    "Perfect, <span class="hl cust">Customer</span>. To qualify for <strong>0% interest</strong>, what is your credit range? <br><br>
+                    Lastly, our specialist will visit for a <span class="hl">Free 12-Month Price-Locked Estimate</span>. Do mornings or evenings work best for you and your spouse?"
                 </div>
-                <button class="copy-btn" onclick="copyText('s3')">CLICK TO COPY DIALOGUE</button>
-            </div>
-
-            <div class="step-block" style="border-left-color: var(--danger);">
-                <span class="step-badge">Step 11-12: The 12-Month Lock</span>
-                <div class="dialogue" id="s4">
-                    "Perfect, <span class="hl name">Customer</span>. Confirm your address. <br><br>
-                    Our expert will visit for a <span class="hl">Free 12-Month Price-Locked Report</span>. Do mornings or evenings work for you and your spouse?"
-                </div>
-                <button class="copy-btn" onclick="copyText('s4')">CLICK TO COPY DIALOGUE</button>
+                <button class="copy-btn" onclick="copyIt('d3')">COPY DIALOGUE</button>
             </div>
 
         </div>
 
-        <div class="panel" style="border-left: 1px solid var(--border);">
-            <h4 style="color: var(--success); margin-top: 0; font-size: 14px;">LIVE REBUTTAL ENGINE</h4>
+        <div class="panel" style="border-left: 1px solid rgba(255,255,255,0.1);">
+            <h4 style="color: var(--success); margin-top: 0; letter-spacing: 1px;">OBJECTION HANDLER</h4>
             
-            <div class="rebuttal-card">
+            <div class="rebuttal-pill">
                 <strong>"Why do you need my ZIP?"</strong>
-                <p>"Rebates are county-specific. Your ZIP ensures we find the exact local credits for your area."</p>
+                <p>"Rebates are location-based. Your ZIP ensures Prime Solutions finds the exact credits for your specific street."</p>
             </div>
 
-            <div class="rebuttal-card">
+            <div class="rebuttal-pill">
                 <strong>"Why both spouses?"</strong>
-                <p>"The quote is a legal 12-month price-lock. We need both owners to receive the data together."</p>
+                <p>"The quote is a legal 12-month price guarantee. We need both owners to receive the data together."</p>
             </div>
 
-            <div class="rebuttal-card">
-                <strong>"Is this a sales call?"</strong>
-                <p>"This is a technical assessment for the rebate. We provide the price-locked data, you decide when to use it."</p>
+            <div class="rebuttal-pill">
+                <strong>"Not interested right now."</strong>
+                <p>"I understand! That's why we give a 12-month price lock—so you can use the discount whenever you're ready within a year."</p>
             </div>
 
-            <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 15px; margin-top: 20px;">
-                <h4 style="margin:0; font-size:12px; color: var(--primary);">PRO TIPS:</h4>
-                <ul style="font-size: 13px; color: #94a3b8; padding-left: 20px; line-height: 1.8;">
-                    <li>Call it a <b>"Technical Audit."</b></li>
-                    <li>Always confirm <b>Homeowner</b> status.</li>
-                    <li>Maintain high energy!</li>
-                </ul>
-            </div>
-
-            <button class="submit-btn">Lock Certified Lead</button>
+            <button class="lock-btn">Submit Prime Lead</button>
         </div>
     </div>
 
     <footer>
-        <strong>PRIME SOLUTIONS AGENCY</strong> | Premium Branding & Lead Generation OS © 2026<br>
-        Proprietary System for Call Centers & High-Ticket Sales
+        PRIME SOLUTIONS AGENCY © 2026 | PREMIUM WEB & SCRIPT SYSTEMS<br>
+        <a href="https://web-hub-code.github.io/PRIMESOLUTIONS/" style="color:var(--primary); text-decoration:none;">Visit Main Portfolio</a>
     </footer>
 </div>
 
 <script>
-    function updateVars() {
-        let name = document.getElementById('custName').value || "Customer";
-        let city = document.getElementById('cityName').value || "Your City";
-        let agent = document.getElementById('agentName').value || "Agent";
+    function sync() {
+        let agent = document.getElementById('agentInput').value || "Agent";
+        let cust = document.getElementById('custInput').value || "Customer";
+        let city = document.getElementById('cityInput').value || "City";
 
-        document.querySelectorAll('.name').forEach(el => el.innerText = name);
-        document.querySelectorAll('.city').forEach(el => el.innerText = city);
-        document.querySelectorAll('.agent').forEach(el => el.innerText = agent);
+        document.querySelectorAll('.agent').forEach(e => e.innerText = agent);
+        document.querySelectorAll('.cust').forEach(e => e.innerText = cust);
+        document.querySelectorAll('.city').forEach(e => e.innerText = city);
     }
 
-    function copyText(id) {
+    function copyIt(id) {
         let text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text);
-        alert("Dialogue Copied to Clipboard!");
+        alert("Copied to clipboard!");
     }
 </script>
 
