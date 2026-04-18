@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite 12-Step Master Script | Prime Solutions</title>
+    <title>Prime Solutions | Elite Lead System</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -10,8 +10,8 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --dark-navy: #0f172a;
-            --card-bg: #1e293b;
+            --dark-navy: #020617;
+            --card-bg: #0f172a;
             --text-main: #f8fafc;
         }
 
@@ -28,12 +28,12 @@
             margin: 0 auto;
             background: var(--card-bg);
             border-radius: 30px;
-            border: 1px solid #334155;
+            border: 1px solid #1e293b;
             overflow: hidden;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6);
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8);
         }
 
-        /* Header */
+        /* Branding Header */
         header {
             background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%);
             padding: 40px;
@@ -41,14 +41,15 @@
             border-bottom: 5px solid var(--warning);
         }
 
-        header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: 2px; }
-        header p { color: var(--warning); font-weight: 600; margin-top: 10px; }
+        header h1 { margin: 0; font-size: 36px; font-weight: 800; letter-spacing: 3px; }
+        header .brand-url { font-family: monospace; color: var(--warning); font-size: 14px; margin-top: 5px; display: block; text-decoration: none; opacity: 0.8; }
+        header .tagline { margin-top: 10px; font-weight: 600; font-size: 16px; color: #94a3b8; }
 
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1.8fr 1fr;
             gap: 2px;
-            background: #334155;
+            background: #1e293b;
         }
 
         .panel { background: var(--card-bg); padding: 40px; }
@@ -58,7 +59,6 @@
             margin-bottom: 40px;
             padding-left: 20px;
             border-left: 5px solid var(--primary);
-            position: relative;
         }
 
         .step-label {
@@ -73,17 +73,12 @@
             display: inline-block;
         }
 
-        .dialogue {
-            font-size: 20px;
-            line-height: 1.7;
-            color: #e2e8f0;
-        }
-
-        .highlight { color: var(--warning); font-weight: 700; border-bottom: 1px dashed var(--warning); }
+        .dialogue { font-size: 20px; line-height: 1.7; color: #e2e8f0; }
+        .highlight { color: var(--warning); font-weight: 700; }
 
         /* Sidebar Tools */
         .tool-card {
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(2, 6, 23, 0.5);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 25px;
@@ -95,21 +90,37 @@
         .rebuttal-box {
             background: #0f172a;
             border-radius: 10px;
-            padding: 15px;
+            padding: 12px;
             margin-top: 10px;
-            border: 1px solid #1e293b;
+            border-left: 3px solid var(--danger);
         }
 
-        .rebuttal-q { color: var(--danger); font-weight: 800; font-size: 13px; display: block; margin-bottom: 5px; }
-        .rebuttal-a { color: #94a3b8; font-size: 14px; display: block; line-height: 1.4; border-left: 2px solid var(--success); padding-left: 10px; }
+        .rebuttal-q { color: var(--danger); font-weight: 800; font-size: 12px; display: block; }
+        .rebuttal-a { color: #94a3b8; font-size: 14px; display: block; margin-top: 5px; }
 
-        .disclaimer-area {
+        /* Footer / Company Info */
+        footer {
             background: #020617;
-            padding: 25px;
-            font-size: 13px;
-            color: #64748b;
-            border-top: 1px solid #334155;
-            text-align: justify;
+            padding: 30px;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+        }
+
+        .company-details { font-size: 13px; color: #64748b; line-height: 2; }
+        .company-details a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        
+        .cta-button {
+            background: var(--success);
+            color: white;
+            width: 100%;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
         }
     </style>
 </head>
@@ -117,93 +128,80 @@
 
 <div class="master-container">
     <header>
-        <h1>ULTIMATE 12-STEP CONVERSION MACHINE</h1>
-        <p>USA HOME IMPROVEMENT | PROFESSIONAL AGENT DASHBOARD 2026</p>
+        <h1>PRIME SOLUTIONS</h1>
+        <a href="https://web-hub-code.github.io/PRIMESOLUTIONS/" target="_blank" class="brand-url">web-hub-code.github.io/PRIMESOLUTIONS/</a>
+        <p class="tagline">USA Home Improvement & Lead Generation Excellence</p>
     </header>
 
     <div class="dashboard-grid">
         <div class="panel">
-            
             <div class="step-block">
-                <span class="step-label">Step 1-3: The Hook & Ownership</span>
+                <span class="step-label">Step 1-3: Introduction & Hook</span>
                 <div class="dialogue">
-                    "Hi, this is [Name] regarding the <span class="highlight">Energy-Efficient Project</span> in your area. How are you today? <br><br>
-                    We’re offering free window estimates to help lower utility bills. Just to verify—are you the <strong>homeowner</strong>? <br><br>
-                    Perfect. Roughly how many windows are we looking at—around <strong>5 to 10</strong> or more? And do you prefer <strong>Sliding, Casement, or Aluminum</strong> styles?"
+                    "Hi, this is [Name] calling from <strong>Prime Solutions</strong>. How are you today? <br><br>
+                    We’re helping homeowners secure <span class="highlight">2026 Window Rebates</span>. Are you the <strong>homeowner</strong>? <br><br>
+                    Great! Are we looking at <strong>5 to 10 windows</strong> or more? And do you prefer <strong>Sliding or Casement</strong> styles?"
                 </div>
             </div>
 
             <div class="step-block" style="border-left-color: var(--warning);">
-                <span class="step-label">Step 4-6: Rebate Qualification</span>
+                <span class="step-label">Step 4-6: Location & Data</span>
                 <div class="dialogue">
-                    "To check the 2026 local rebate rates, what is your <strong>ZIP code</strong>? <br><br>
-                    And for the state eligibility record, may I have your <strong>Date of Birth</strong>? This ensures you receive the <span class="highlight">Senior or First-Time Buyer discounts</span>."
+                    "To check local tax credits, what is your <strong>ZIP code</strong>? <br><br>
+                    And for the record, what is your <strong>Date of Birth</strong>? This ensures you receive the <span class="highlight">proper senior or state discounts</span>."
                 </div>
             </div>
 
             <div class="step-block" style="border-left-color: var(--success);">
-                <span class="step-label">Step 7-10: Financing & Credit Lock</span>
+                <span class="step-label">Step 7-10: Financing & History</span>
                 <div class="dialogue">
-                    "Are you planning this project <strong>this month</strong> or just budgeting? Have you received other estimates? <br><br>
-                    To qualify for our <span class="highlight">0% Down-Payment programs</span>, what is your credit score range? Most homeowners check their banking app—I’ll hold for a second while you grab that. <br><br>
+                    "Are you planning this <strong>this month</strong>? To qualify for <strong>0% Interest</strong>, what is your credit score range? I’ll hold while you check your banking app real quick. <br><br>
                     Lastly, any <strong>mortgage modifications</strong> in the last 2 years?"
                 </div>
             </div>
 
             <div class="step-block" style="border-left-color: var(--danger);">
-                <span class="step-label">Step 11-12: The Final Closing</span>
+                <span class="step-label">Step 11-12: The Professional Close</span>
                 <div class="dialogue">
-                    "Great! Can I get your <strong>Full Name and Full Address</strong> for the specialist? <br><br>
-                    Our expert will visit to drop off your <strong>12-Month Price-Locked Technical Report</strong>. It's 100% free. Do <span class="highlight">mornings or evenings</span> work best for you and your spouse?"
+                    "Perfect. Can I get your <strong>Full Name and Address</strong>? <br><br>
+                    Our specialist will visit for a <span class="highlight">Free 12-Month Price-Locked Estimate</span>. Do mornings or evenings work best for you and your spouse?"
                 </div>
             </div>
-
         </div>
 
-        <div class="panel" style="border-left: 1px solid #334155;">
-            
+        <div class="panel" style="border-left: 1px solid #1e293b;">
             <div class="tool-card">
-                <h4>🚀 Professional Rebuttals (The "Why")</h4>
-                
+                <h4>🎯 Rebuttals (The Why)</h4>
                 <div class="rebuttal-box">
-                    <span class="rebuttal-q">Why ZIP Code?</span>
-                    <span class="rebuttal-a">"Utility incentives vary by county; your ZIP ensures we calculate the exact credits for your street."</span>
+                    <span class="rebuttal-q">"Why ZIP code?"</span>
+                    <span class="rebuttal-a">"To match county-specific rebates for Prime Solutions clients."</span>
                 </div>
-
                 <div class="rebuttal-box">
-                    <span class="rebuttal-q">Why Credit Score?</span>
-                    <span class="rebuttal-a">"We use it to match you with 0% interest lenders so you pay nothing out of pocket today."</span>
-                </div>
-
-                <div class="rebuttal-box">
-                    <span class="rebuttal-q">Why DOB?</span>
-                    <span class="rebuttal-a">"To verify eligibility for state-specific Senior (65+) or Military discounts."</span>
-                </div>
-
-                <div class="rebuttal-box">
-                    <span class="rebuttal-q">Why both spouses?</span>
-                    <span class="rebuttal-a">"The estimate is a legal 12-month price guarantee; we need both owners to receive the data together."</span>
+                    <span class="rebuttal-q">"Why Credit Score?"</span>
+                    <span class="rebuttal-a">"To secure 0% down-payment financing options."</span>
                 </div>
             </div>
 
             <div class="tool-card" style="border-color: var(--primary);">
-                <h4>💎 Why This Grabs the CX</h4>
-                <p style="font-size: 13px; line-height: 1.6; color: #cbd5e1;">
-                    • <strong>12-Month Price Lock:</strong> Inflation protection hook.<br>
-                    • <strong>Banking App Engagement:</strong> Prevents call drops.<br>
-                    • <strong>Consultative Tone:</strong> Technician, not salesman.
+                <h4>💎 Agent Pro-Tips</h4>
+                <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+                    • Mention <strong>Prime Solutions</strong> early to build trust.<br>
+                    • Keep the tone helpful (Advisor), not pushy (Salesman).<br>
+                    • Use the 12-month price lock as the final hook.
                 </p>
             </div>
 
-            <button style="background:var(--success); color:white; width:100%; border:none; padding:18px; border-radius:12px; font-weight:800; cursor:pointer; text-transform:uppercase;">
-                Submit Certified Lead
-            </button>
+            <button class="cta-button">Submit Prime Lead</button>
         </div>
     </div>
 
-    <div class="disclaimer-area">
-        <strong>FINAL LEGAL DISCLAIMER:</strong> "Today’s date is [Date]. A specialist will call you shortly to finalize. By confirming, you agree to this call even if you are on a <strong>Do Not Call List</strong>. This is for your requested free technical estimate."
-    </div>
+    <footer>
+        <div class="company-details">
+            <strong>OFFICIAL PROPERTY OF PRIME SOLUTIONS</strong><br>
+            Visit us: <a href="https://web-hub-code.github.io/PRIMESOLUTIONS/" target="_blank">web-hub-code.github.io/PRIMESOLUTIONS/</a><br>
+            <span style="font-style: italic; opacity: 0.6;">DNC Disclaimer: By confirming, the homeowner agrees to a callback from our specialist for a free estimate.</span>
+        </div>
+    </footer>
 </div>
 
 </body>
