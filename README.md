@@ -1,239 +1,311 @@
+import os
+
+# Define the HTML content for the Premium Master Website
+html_content = """
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Solutions | Official Agent Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Prime Solutions | Elite Master Lead OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #f43f5e;
-            --bg: #020617;
-            --card: #0f172a;
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-bg: #0f172a;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: #f1f5f9;
-            margin: 0;
+            background: radial-gradient(circle at top right, #1e1b4b, #030712);
+            color: #f8fafc;
+            min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
+
+        /* Premium Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes glow { 0% { box-shadow: 0 0 5px var(--primary-glow); } 50% { box-shadow: 0 0 20px var(--primary-glow); } 100% { box-shadow: 0 0 5px var(--primary-glow); } }
 
         .master-container {
-            max-width: 1400px;
+            max-width: 1550px;
             margin: 0 auto;
-            background: var(--card);
-            border-radius: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.9);
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* Agency Header */
+        /* Glass Header */
         header {
-            background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
-            padding: 45px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px;
             text-align: center;
-            border-bottom: 5px solid var(--warning);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
         }
 
-        header h1 { margin: 0; font-size: 40px; font-weight: 800; letter-spacing: 4px; }
-        .branding-sub { color: var(--warning); font-size: 14px; font-weight: 600; margin-top: 10px; display: block; }
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
 
-        /* Real-time Inputs */
-        .input-hub {
-            background: rgba(99, 102, 241, 0.1);
+        header:hover::after { left: 150%; transition: 0.8s; }
+
+        header h1 { 
+            font-size: 48px; font-weight: 800; letter-spacing: 6px; 
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .agency-badge {
+            background: var(--warning); color: #000;
+            padding: 5px 15px; border-radius: 50px;
+            font-size: 11px; font-weight: 800; letter-spacing: 2px;
+            display: inline-block; margin-top: 10px;
+        }
+
+        .portal-links { margin-top: 25px; display: flex; justify-content: center; gap: 15px; }
+        .portal-links a {
+            background: rgba(255,255,255,0.05); color: #fff; text-decoration: none;
+            padding: 12px 25px; border-radius: 15px; font-weight: 600; font-size: 13px;
+            border: 1px solid var(--glass-border); transition: 0.3s;
+        }
+        .portal-links a:hover { background: var(--primary); transform: translateY(-3px); }
+
+        /* Control Center Variables */
+        .control-bar {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
             padding: 25px 40px;
+            border-radius: 25px;
             display: flex;
             gap: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 25px;
         }
 
-        .input-hub input {
-            background: #020617;
-            border: 1px solid #334155;
-            padding: 14px;
-            color: white;
-            border-radius: 12px;
-            flex: 1;
-            font-size: 14px;
-            outline: none;
-            transition: 0.3s;
+        .control-bar input {
+            background: #020617; border: 1px solid var(--glass-border);
+            padding: 15px; color: #fff; border-radius: 12px; flex: 1;
+            outline: none; transition: 0.3s; font-family: 'JetBrains Mono', monospace;
         }
 
-        .input-hub input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
+        .control-bar input:focus { border-color: var(--primary); animation: glow 2s infinite; }
 
-        .content-grid {
+        /* Main Workspace */
+        .workspace {
             display: grid;
-            grid-template-columns: 1.8fr 1fr;
-            gap: 2px;
-            background: rgba(255,255,255,0.1);
+            grid-template-columns: 1fr 400px;
+            gap: 25px;
         }
 
-        .panel { background: var(--card); padding: 45px; }
-
-        /* Script Content */
-        .step-box {
-            margin-bottom: 50px;
-            border-left: 6px solid var(--primary);
-            padding-left: 25px;
+        .script-panel {
+            background: var(--card-bg);
+            border-radius: 35px;
+            border: 1px solid var(--glass-border);
+            padding: 50px;
             position: relative;
         }
 
-        .phase-tag {
-            background: var(--primary);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: inline-block;
+        .step-section {
+            margin-bottom: 60px;
+            padding-left: 35px;
+            border-left: 4px solid var(--primary);
+            position: relative;
         }
 
-        .dialogue { font-size: 22px; line-height: 1.8; color: #e2e8f0; }
-        .hl { color: var(--warning); font-weight: 800; text-decoration: underline; }
+        .step-label {
+            background: var(--primary); color: #fff;
+            padding: 6px 16px; border-radius: 8px;
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
+            margin-bottom: 20px; display: inline-block;
+        }
 
-        .copy-btn {
-            margin-top: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 700;
+        .dialogue-text {
+            font-size: 22px; line-height: 1.8; color: #cbd5e1;
+        }
+
+        .hl { color: var(--warning); font-weight: 800; border-bottom: 2px solid var(--warning); }
+
+        /* Interaction Elements */
+        .copy-button {
+            margin-top: 25px;
+            background: transparent; border: 1px solid var(--primary);
+            color: var(--primary); padding: 12px 24px; border-radius: 12px;
+            cursor: pointer; font-weight: 700; font-size: 13px;
+            transition: 0.3s; display: flex; align-items: center; gap: 10px;
+        }
+
+        .copy-button:hover { background: var(--primary); color: #fff; }
+
+        /* Right Sidebar Tools */
+        .sidebar { display: flex; flex-direction: column; gap: 25px; }
+
+        .tool-widget {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 25px; padding: 30px;
+        }
+
+        .rebuttal-box {
+            background: #020617; border-radius: 15px; padding: 20px;
+            margin-bottom: 15px; border-left: 4px solid var(--danger);
+            transition: 0.3s; cursor: pointer;
+        }
+
+        .rebuttal-box:hover { transform: scale(1.02); background: #0f172a; }
+        .rebuttal-box strong { color: var(--danger); font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .rebuttal-box p { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+
+        .lead-button {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: #fff; border: none; width: 100%;
+            padding: 25px; border-radius: 20px; font-weight: 900;
+            font-size: 20px; text-transform: uppercase; cursor: pointer;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
             transition: 0.3s;
         }
 
-        .copy-btn:hover { background: var(--primary); color: white; }
+        .lead-button:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(16, 185, 129, 0.4); }
 
-        /* Sidebar Tools */
-        .rebuttal-pill {
-            background: #020617;
-            padding: 20px;
-            border-radius: 18px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--danger);
+        footer {
+            margin-top: 50px; text-align: center; padding: 40px;
+            opacity: 0.5; font-size: 12px; letter-spacing: 1px;
         }
 
-        .rebuttal-pill strong { color: var(--danger); display: block; margin-bottom: 8px; font-size: 13px; }
-        .rebuttal-pill p { font-size: 15px; color: #94a3b8; margin: 0; line-height: 1.6; }
-
-        .lock-btn {
-            background: var(--success);
-            color: white;
-            width: 100%;
-            padding: 25px;
-            border: none;
-            border-radius: 20px;
-            font-weight: 900;
-            font-size: 20px;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
-            margin-top: 20px;
-        }
-
-        footer { text-align: center; padding: 40px; background: #020617; color: #475569; font-size: 13px; }
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <div class="master-container">
     <header>
+        <span class="agency-badge">PREMIUM BRAND AGENCY</span>
         <h1>PRIME SOLUTIONS</h1>
-        <span class="branding-sub">OFFICIAL AGENT COMMAND CENTER & LEAD OS</span>
+        <div class="portal-links">
+            <a href="https://web-hub-code.github.io/PRIMESOLUTIONS/">Agency Website</a>
+            <a href="https://web-hub-code.github.io/script/">Live Script Hub</a>
+        </div>
     </header>
 
-    <div class="input-hub">
-        <input type="text" id="agentInput" placeholder="Agent Name..." onkeyup="sync()">
-        <input type="text" id="custInput" placeholder="Customer Name..." onkeyup="sync()">
-        <input type="text" id="cityInput" placeholder="City Name..." onkeyup="sync()">
+    <div class="control-bar">
+        <input type="text" id="agName" placeholder="[Agent Name]" onkeyup="syncData()">
+        <input type="text" id="csName" placeholder="[Customer Name]" onkeyup="syncData()">
+        <input type="text" id="lcName" placeholder="[City/Location]" onkeyup="syncData()">
     </div>
 
-    <div class="content-grid">
-        <div class="panel">
-            
-            <div class="step-box">
-                <span class="phase-tag">Phase 1: Verification</span>
-                <div class="dialogue" id="d1">
-                    "Hi, this is <span class="hl agent">Agent</span> from <strong>Prime Solutions</strong>. How are you today? <br><br>
-                    We’re verifying homeowners in <span class="hl city">City</span> for the <span class="hl">2026 Home Efficiency Credits</span>. Are you the <strong>homeowner</strong>? <br><br>
-                    Great! Are we looking at <strong>5 to 10 windows</strong> or more? And do you prefer <strong>Sliding or Casement</strong>?"
+    <div class="workspace">
+        <div class="script-panel">
+            <div class="step-section">
+                <span class="step-label">Stage 1: The Hook (Steps 1-3)</span>
+                <div class="dialogue-text" id="txt1">
+                    "Hi, this is <span class="hl dyn-ag">Agent</span> from <strong>Prime Solutions</strong>. How's your day going in <span class="hl dyn-lc">Location</span>? <br><br>
+                    We're verifying homeowners for the <span class="hl">2026 Home Efficiency Rebate</span>. Just to check—are you the <strong>homeowner</strong>? <br><br>
+                    Excellent! Are we looking at <strong>5 to 10 windows</strong> or a full house today?"
                 </div>
-                <button class="copy-btn" onclick="copyIt('d1')">COPY DIALOGUE</button>
+                <button class="copy-button" onclick="copyDialog('txt1')">COPY SCRIPT 1</button>
             </div>
 
-            <div class="step-box" style="border-left-color: var(--warning);">
-                <span class="phase-tag">Phase 2: Qualification</span>
-                <div class="dialogue" id="d2">
-                    "To check the specific rebate for your county, what is your <strong>ZIP code</strong>? <br><br>
-                    And for the state record, what is your <strong>Date of Birth</strong>? This helps us apply the <span class="hl">Senior or Veteran discounts</span> properly."
+            <div class="step-section" style="border-left-color: var(--warning);">
+                <span class="step-label">Stage 2: Validation (Steps 4-6)</span>
+                <div class="dialogue-text" id="txt2">
+                    "To calculate the exact tax credits for your area, may I have your <strong>ZIP code</strong>? <br><br>
+                    And for the state record, what is your <strong>Date of Birth</strong>? This helps us apply any <span class="hl">Senior or Military discounts</span> to your final report."
                 </div>
-                <button class="copy-btn" onclick="copyIt('d2')">COPY DIALOGUE</button>
+                <button class="copy-button" onclick="copyDialog('txt2')">COPY SCRIPT 2</button>
             </div>
 
-            <div class="step-box" style="border-left-color: var(--success);">
-                <span class="phase-tag">Phase 3: Financials & Closing</span>
-                <div class="dialogue" id="d3">
-                    "Perfect, <span class="hl cust">Customer</span>. To qualify for <strong>0% interest</strong>, what is your credit range? <br><br>
-                    Lastly, our specialist will visit for a <span class="hl">Free 12-Month Price-Locked Estimate</span>. Do mornings or evenings work best for you and your spouse?"
+            <div class="step-section" style="border-left-color: var(--success);">
+                <span class="step-label">Stage 3: Financing & Close (Steps 7-12)</span>
+                <div class="dialogue-text" id="txt3">
+                    "Perfect, <span class="hl dyn-cs">Customer</span>. To qualify for our <strong>0% interest plans</strong>, what is your credit score range? <br><br>
+                    Our specialist will visit for a <span class="hl">Free 12-Month Price-Locked Estimate</span>. Do mornings or evenings work best for you and your spouse?"
                 </div>
-                <button class="copy-btn" onclick="copyIt('d3')">COPY DIALOGUE</button>
+                <button class="copy-button" onclick="copyDialog('txt3')">COPY SCRIPT 3</button>
             </div>
-
         </div>
 
-        <div class="panel" style="border-left: 1px solid rgba(255,255,255,0.1);">
-            <h4 style="color: var(--success); margin-top: 0; letter-spacing: 1px;">OBJECTION HANDLER</h4>
-            
-            <div class="rebuttal-pill">
-                <strong>"Why do you need my ZIP?"</strong>
-                <p>"Rebates are location-based. Your ZIP ensures Prime Solutions finds the exact credits for your specific street."</p>
+        <div class="sidebar">
+            <div class="tool-widget">
+                <h4 style="color: var(--success); font-size: 13px; margin-bottom: 20px; letter-spacing: 2px;">OBJECTION HANDLER</h4>
+                
+                <div class="rebuttal-box">
+                    <strong>Why ZIP Code?</strong>
+                    <p>"Credits are county-based. Your ZIP ensures we find the exact local funds available for your street."</p>
+                </div>
+
+                <div class="rebuttal-box">
+                    <strong>Why both spouses?</strong>
+                    <p>"The quote is a legal 12-month price lock. Both owners must receive the data to finalize the audit."</p>
+                </div>
+
+                <div class="rebuttal-box">
+                    <strong>Not interested?</strong>
+                    <p>"No problem! We provide the data and lock the price for 1 year. You use it only when you're ready."</p>
+                </div>
             </div>
 
-            <div class="rebuttal-pill">
-                <strong>"Why both spouses?"</strong>
-                <p>"The quote is a legal 12-month price guarantee. We need both owners to receive the data together."</p>
+            <div class="tool-widget" style="background: rgba(99, 102, 241, 0.05);">
+                <h4 style="color: var(--primary); font-size: 13px; margin-bottom: 15px;">AGENT STATS</h4>
+                <div style="font-size: 13px; color: #94a3b8;">
+                    <p>Status: <span style="color: var(--success);">● Active</span></p>
+                    <p>Price Lock: <span style="color: #fff;">12 Months</span></p>
+                    <p>Rebate Year: <span style="color: #fff;">2026</span></p>
+                </div>
             </div>
 
-            <div class="rebuttal-pill">
-                <strong>"Not interested right now."</strong>
-                <p>"I understand! That's why we give a 12-month price lock—so you can use the discount whenever you're ready within a year."</p>
-            </div>
-
-            <button class="lock-btn">Submit Prime Lead</button>
+            <button class="lead-button" onclick="alert('Lead Logged to Prime Solutions Database!')">Submit Prime Lead</button>
         </div>
     </div>
 
     <footer>
-        PRIME SOLUTIONS AGENCY © 2026 | PREMIUM WEB & SCRIPT SYSTEMS<br>
-        <a href="https://web-hub-code.github.io/PRIMESOLUTIONS/" style="color:var(--primary); text-decoration:none;">Visit Main Portfolio</a>
+        PRIME SOLUTIONS AGENCY & SYSTEMS | PROPRIETARY OS V4.0 FINAL<br>
+        DESIGNED FOR ELITE CONVERSIONS © 2026
     </footer>
 </div>
 
 <script>
-    function sync() {
-        let agent = document.getElementById('agentInput').value || "Agent";
-        let cust = document.getElementById('custInput').value || "Customer";
-        let city = document.getElementById('cityInput').value || "City";
+    function syncData() {
+        let ag = document.getElementById('agName').value || "Agent";
+        let cs = document.getElementById('csName').value || "Customer";
+        let lc = document.getElementById('lcName').value || "Location";
 
-        document.querySelectorAll('.agent').forEach(e => e.innerText = agent);
-        document.querySelectorAll('.cust').forEach(e => e.innerText = cust);
-        document.querySelectorAll('.city').forEach(e => e.innerText = city);
+        document.querySelectorAll('.dyn-ag').forEach(e => e.innerText = ag);
+        document.querySelectorAll('.dyn-cs').forEach(e => e.innerText = cs);
+        document.querySelectorAll('.dyn-lc').forEach(e => e.innerText = lc);
     }
 
-    function copyIt(id) {
+    function copyDialog(id) {
         let text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text);
-        alert("Copied to clipboard!");
+        let btn = event.target;
+        btn.innerText = "COPIED!";
+        setTimeout(() => btn.innerText = "COPY SCRIPT", 2000);
     }
 </script>
 
 </body>
 </html>
+"""
+
+# Save the file
+with open("PrimeSolutions_Master_OS.html", "w") as f:
+    f.write(html_content)
+    
